@@ -1,0 +1,73 @@
+{
+  "productList": [
+    {
+      "productName": "Mango",
+      "category": "Fruit",
+      "freshness": "Refurbished",
+      "price": 100,
+      "comment": "Fruit",
+      "date": "2024-01-23T18:30:00.000Z",
+      "id": "c383"
+    },
+    {
+      "productName": "Phone",
+      "category": "Electronics",
+      "freshness": "Second Hand",
+      "price": 14000,
+      "comment": "Electronic device",
+      "date": "2024-01-24T18:30:00.000Z",
+      "id": "2516"
+    },
+    {
+      "id": "711b",
+      "productName": "Tomato",
+      "category": "Vegitable",
+      "freshness": "Brand New",
+      "price": 60,
+      "comment": "This is Veggie",
+      "date": "2024-01-26T18:30:00.000Z"
+    },
+    {
+      "productName": "Battery",
+      "category": "Electronics",
+      "freshness": "Second Hand",
+      "price": 10,
+      "comment": "This is Electronic",
+      "date": "2000-12-31T18:30:00.000Z",
+      "id": "c444"
+    },
+    {
+      "id": "4b3b",
+      "productName": "Guava",
+      "category": "Fruit",
+      "freshness": "Brand New",
+      "price": 40,
+      "comment": "This is fruit",
+      "date": "2024-01-30T18:30:00.000Z"
+    },
+    {
+      "id": "823c",
+      "productName": "Potato",
+      "category": "Vegitable",
+      "freshness": "Brand New",
+      "price": 40,
+      "comment": "This is vegii",
+      "date": "2024-01-29T18:30:00.000Z"
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "text": "a comment about post 1",
+      "postId": "1"
+    },
+    {
+      "id": "2",
+      "text": "another comment about post 1",
+      "postId": "1"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
