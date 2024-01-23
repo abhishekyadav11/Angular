@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
+import { NgToastService } from 'ng-angular-popup';
 
 
 @Component({
@@ -27,13 +28,13 @@ export class DialogComponent {
 
   productForm !: FormGroup;
 
-  constructor(private dialog:MatDialogRef<DialogComponent>,private formBuilder: FormBuilder,@Inject(MAT_DIALOG_DATA) public editData:any,private api:ApiService)
+  constructor(private dialog:MatDialogRef<DialogComponent>,private formBuilder: FormBuilder,@Inject(MAT_DIALOG_DATA) public editData:any,private api:ApiService,private toast:NgToastService)
   {}
 
   ngOnInit()
   {
     this.productForm = this.formBuilder.group({
-      productName:['',Validators.required],
+      productName:['',Validators.required], 
       category:['',Validators.required],
       freshness:['',Validators.required],
       price:['',Validators.required],
@@ -65,11 +66,11 @@ export class DialogComponent {
       if(this.productForm.valid)
      {
        this.api.postProduct(this.productForm.value).subscribe((res)=>{
-         alert('Product Added Successfully')
+         this.toast.success({detail:'Success',summary:'Product Added Successfully',duration:5000});
          this.productForm.reset();
          this.dialog.close('save');
        },error=>{
-        alert('Error Occured : '+error)
+        this.toast.error({detail:'Error',summary:'Failed to add product',duration:5000});
        });
      }
     }
@@ -82,11 +83,11 @@ export class DialogComponent {
   updateProduct()
   {
     this.api.putProduct(this.productForm.value,this.editData.id).subscribe((res)=>{
-      alert('Product Updated Successfully');
+      this.toast.success({detail:'Updated',summary:'Product Updated Successfully',duration:5000})
       this.productForm.reset();
       this.dialog.close('update');
     },(error)=>{
-      alert('Error Occured');
+      this.toast.error({detail:'Error',summary:'Failed to update product',duration:5000});
     });
   }
 }

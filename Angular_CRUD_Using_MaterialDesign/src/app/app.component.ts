@@ -12,11 +12,12 @@ import {MatSort, MatSortModule} from '@angular/material/sort';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { NgToastModule, NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet,MatButtonModule,MatIconModule,MatToolbarModule,MatDialogModule,MatTableModule, MatSortModule, MatPaginatorModule,MatInputModule,MatFormFieldModule],
+  imports: [CommonModule, RouterOutlet,MatButtonModule,MatIconModule,MatToolbarModule,MatDialogModule,MatTableModule, MatSortModule, MatPaginatorModule,MatInputModule,MatFormFieldModule,NgToastModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -29,7 +30,7 @@ export class AppComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   
-  constructor(public dialog: MatDialog,private api:ApiService) {}
+  constructor(public dialog: MatDialog,private api:ApiService,private toast:NgToastService) {}
 
   openDialog() {
     this.dialog.open(DialogComponent,{
@@ -78,10 +79,10 @@ export class AppComponent {
   deleteProduct(id:number)
   {
       this.api.deleteProduct(id).subscribe((res)=>{
-        alert('Product Deleted Successfully')
+        this.toast.success({detail:'Deleted',summary:'Product Deleted Successfully',duration:5000});
         this.getAllProduct();
       },error=>{
-        alert('Error Occured '+error);
+        this.toast.error({detail:'Error',summary:'Failed to delete product',duration:5000});
       });
   }
 
